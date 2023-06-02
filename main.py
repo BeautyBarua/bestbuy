@@ -1,11 +1,8 @@
+from store import Store
 import products
-import store
 
 
-# setup initial stock of inventory
-
-
-def start(order):
+def start(store):
     while True:
         print("Menu:")
         print("1. List all products in store")
@@ -16,8 +13,8 @@ def start(order):
         choice = input("Enter your choice (1-4): ")
 
         if choice == "1":
-            product = store.get_all_products()
-            for product in product:
+            products = store.get_all_products()
+            for product in products:
                 print(product)
             print()
 
@@ -27,7 +24,7 @@ def start(order):
             print()
 
         elif choice == "3":
-            products_list = store.get_all_products()
+            product_list = store.get_all_products()
             shopping_list = []
             while True:
                 print("Available products:")
@@ -66,10 +63,16 @@ def start(order):
             print()
 
 
-product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
-                products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                products.Product("Google Pixel 7", price=500, quantity=250)
-                ]
-best_buy = store.Store(product_list)
+def main():
+    product_list = [
+        products.Product("MacBook Air M2", price=1450, quantity=100),
+        products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+        products.Product("Google Pixel 7", price=500, quantity=250),
+    ]
 
-start(best_buy)
+    store = Store(product_list)
+    start(store)
+
+
+if __name__ == '__main__':
+    main()
