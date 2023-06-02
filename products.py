@@ -7,6 +7,12 @@ class Product:
         self.quantity = quantity
         self.active = True
 
+    def purchase(self, quantity):
+        if self.quantity < quantity:
+            raise ValueError("Insufficient quantity available")
+        self.quantity -= quantity
+        return self.price * quantity
+
     def get_quantity(self):
         return self.quantity
 
